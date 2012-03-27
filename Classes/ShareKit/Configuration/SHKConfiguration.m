@@ -91,7 +91,8 @@ static SHKConfiguration *sharedInstance = nil;
     @synchronized(self)
     {
 		if (sharedInstance != nil) {
-			[NSException raise:@"IllegalStateException" format:@"SHKConfiguration has already been configured with a delegate."];
+            return sharedInstance;
+			//[NSException raise:@"IllegalStateException" format:@"SHKConfiguration has already been configured with a delegate."];
 		}
 		sharedInstance = [[SHKConfiguration alloc] initWithConfigurator:config];
     }

@@ -32,9 +32,11 @@
 @interface SHKTwitter : SHKOAuthSharer <SHKFormControllerLargeTextFieldDelegate>
 {	
 	BOOL xAuth;		
+    BOOL ShouldShorten;
 }
 
 @property BOOL xAuth;
+@property BOOL ShouldShorten;
 
 
 #pragma mark -

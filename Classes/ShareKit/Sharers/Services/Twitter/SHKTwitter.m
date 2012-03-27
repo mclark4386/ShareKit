@@ -51,6 +51,7 @@ static NSString *const kSHKTwitterUserInfo=@"kSHKTwitterUserInfo";
 @implementation SHKTwitter
 
 @synthesize xAuth;
+@synthesize ShouldShorten;
 
 - (id)init
 {
@@ -67,6 +68,7 @@ static NSString *const kSHKTwitterUserInfo=@"kSHKTwitterUserInfo";
 		
 		// -- //
 		
+        ShouldShorten =YES;
 		
 		// You do not need to edit these, they are the same for everyone
 		self.authorizeURL = [NSURL URLWithString:@"https://api.twitter.com/oauth/authorize"];
@@ -326,7 +328,7 @@ static NSString *const kSHKTwitterUserInfo=@"kSHKTwitterUserInfo";
 
 - (BOOL)shortenURL
 {	
-	if (![SHK connected])
+	if (![SHK connected]||!ShouldShorten)
 	{
 		[item setCustomValue:[NSString stringWithFormat:@"%@ %@", item.title, [item.URL.absoluteString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] forKey:@"status"];
 		return YES;
