@@ -82,6 +82,11 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+	
+	// Remove the SHK view wrapper from the window
+//	[[SHK currentHelper] viewWasDismissed];
+//	if(self.limboSharer != nil)
+//		[self.limboSharer share];
 }
 
 - (void)setItem:(SHKItem *)i
@@ -292,8 +297,12 @@
 		{
 			doShare = [shareDelegate aboutToShareItem:item withSharer:sharer];
 		}
+		
+//		[[SHK currentHelper] hideCurrentViewControllerAnimated:YES];
+//		
 		if(doShare)
-			[sharer share];
+            [sharer share];
+//			self.limboSharer = sharer;
 	}
 }
 
