@@ -141,6 +141,24 @@
 - (NSString*)twitterUsername {
 	return @"";
 }
+
+// Tumblr - http://www.tumblr.com/docs/en/api/v2
+- (NSString*)tumblrConsumerKey {
+	return @"";
+}
+
+- (NSString*)tumblrSecret {
+	return @"";
+}
+// You need to set this if using OAuth, see note above (xAuth users can skip it)
+- (NSString*)tumblrCallbackUrl {
+	return @"";
+}
+// To use xAuth, set to 1
+- (NSNumber*)tumblrUseXAuth {
+	return [NSNumber numberWithInt:0];
+}
+
 // Evernote - http://www.evernote.com/about/developer/api/
 /*	You need to set to sandbox until you get approved by evernote. If you use sandbox, you can use it with special sandbox user account only. You can create it here: https://sandbox.evernote.com/Registration.action
     If you already have a consumer-key and secret which have been created with the old username/password authentication system
@@ -248,8 +266,8 @@
     return nil;
 }
 
-// iPad views
-- (NSString*)modalPresentationStyle {
+// iPad views. You can change presentation style for different sharers
+- (NSString *)modalPresentationStyleForController:(UIViewController *)controller {
 	return @"UIModalPresentationFormSheet";// See: http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIViewController_Class/Reference/Reference.html#//apple_ref/occ/instp/UIViewController/modalPresentationStyle
 }
 
@@ -365,18 +383,13 @@
 
 /* SHKMail */
 
-//constructed during runtime from user input in shareForm by default
-- (NSString*)mailBody {
-    return nil;
+//You can use this to prefill recipients. User enters them in MFMailComposeViewController by default. Should be array of NSStrings.
+- (NSArray *)mailToRecipients {
+	return nil;
 }
 
 - (NSNumber*)isMailHTML {
     return [NSNumber numberWithInt:1];
-}
-
-//user enters them in MFMailComposeViewController by default. Should be array of NSStrings.
-- (NSArray*)mailToRecipients {
-    return nil;
 }
 
 //used only if you share image. Values from 1.0 to 0.0 (maximum compression).
@@ -400,7 +413,16 @@
     return nil;
 }
 
+/* SHKTextMessage */
 
+//You can use this to prefill recipients. User enters them in MFMessageComposeViewController by default. Should be array of NSStrings.
+- (NSArray *)textMessageToRecipients {
+  return nil;
+}
 
+-(NSString*) popOverSourceRect;
+ {
+  return NSStringFromCGRect(CGRectZero);
+}
 
 @end
